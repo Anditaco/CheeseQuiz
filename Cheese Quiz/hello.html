@@ -3,28 +3,24 @@
 	<script src="handler.js"></script>
 </head>
 <body>
-	<h1>Hello, and welcome to the Cheese Quiz!</h1>
-	<h2>Fill out the form below to figure out what cheese you are</h2>
+	<h1>Willkommen nach die Käsequiz!</h1>
+	<h2>Machen die Quiz um welches Käse du bist zu wissen.</h2>
 
-	<br>
-	<div name="questions">
-		<div name="q1">
-			<h3>How do you prefer your cheese?</h3>
-			<input type="radio" name="q1-1" value="Shredded">&nbsp;Shredded<br>
-			<input type="radio" name="q1-1" value="Sliced">&nbsp;Sliced<br>
-			<input type="radio" name="q1-1" value="Cubed">&nbsp;Cubed<br>
-			<input type="radio" name="q1-1" value="Melted">&nbsp;Melted<br>
-		</div>
+	
+	<div id="questions">
+		
 	</div>
 	
 	<br>
+	<input id="go" type="button" value="Gehen!" style="visibility: visible;" onclick="generateQuiz()">
+	<input id="done" type="button" value="Fertig Machen!" style="visibility: hidden;" onclick="scoreQuiz()">
 	<br>
-	<input type="button" value="Submit" onclick="generateQuiz()">
 	<br>
 	<br>
-	<br>s
 
+	<div id="results" style="visibility: hidden;">
 	It seems that you would like <span name="ans">cheese</span> quite a bit, and since you are what you eat...<br>
-	You are <span name="ans"></span>!
+	You are <span id="ans"></span>!
+	</div>
 </body>
 </html>
