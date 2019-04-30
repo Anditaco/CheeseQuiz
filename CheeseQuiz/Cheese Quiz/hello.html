@@ -1,0 +1,26 @@
+<html>
+<head>
+	<script src="handler.js"></script>
+</head>
+<body>
+	<h1>Willkommen nach die K�sequiz!</h1>
+	<h2>Machen die Quiz um welches K�se du bist zu wissen.</h2>
+
+
+	<div id="questions">
+
+	</div>
+
+	<br>
+	<input id="go" type="button" value="Gehen!" style="visibility: visible;" onclick="generateQuiz()">
+	<input id="done" type="button" value="Fertig Machen!" style="visibility: hidden;" onclick="scoreQuiz()">
+	<br>
+	<br>
+	<br>
+
+	<div id="results" style="visibility: hidden;">
+	It seems that you would like <span name="ans">cheese</span> quite a bit, and since you are what you eat...<br>
+	You are <span id="ans"></span>!
+	</div>
+</body>
+</html>
