@@ -1,17 +1,17 @@
-var questions = [["Wie viel gibst du f�r K�se?",
+var questions = [["Wie viel gibst du für Käse?",
 			[["Nicht viel", 2],
-			["Ich nehme den K�se meiner Mutter", 4],
+			["Ich nehme den Käse meiner Mutter", 4],
 			["Einnormaler Preis", 0],
 			["Viel", 5],
-			["Man bezahlt mich f�r den K�se nehmen", 3],
+			["Man bezahlt mich für den Käse nehmen", 3],
 			["Ich kaufe die Discountmarke", 1]]],
-		["Wie isst du K�se?",
+		["Wie isst du Käse?",
 			[["Sandwich",1],
 			["Croque monsieur", 2],
 			["Pasta", 4],
 			["Coupelles", 3],
 			["Cracker", 5],
-			["K�sechips", 0]]],
+			["Käsechips", 0]]],
 		["Wie trainierst du?",
 			[["Ich spiele mit mienem Hund",0],
 			["Cheetos essen ist mein Training", 1],
@@ -19,13 +19,13 @@ var questions = [["Wie viel gibst du f�r K�se?",
 			["Nein", 3],
 			["Ich laufe Marathons", 4],
 			["Swoll.", 5]]],
-		["Wie hart gef�llt dir dein K�se?",
+		["Wie hart gefällt dir dein Käse?",
 			[["Quasi-hart",3],
 			["Sechserpackung hart", 0],
-			["So hart wie ein M�nchskopf", 5],
+			["So hart wie ein Mönchskopf", 5],
 			["Harten als dieses Quiz zu machen", 4],
 			["Mittel", 1],
-			["Keine Pr�ferenz", 4]]],
+			["Keine Präferenz", 4]]],
 		["Was ist dein Leiblingsschwiezerberg?",
 			[["Matterhorn",1],
 			["Nisen", 3],
@@ -33,13 +33,34 @@ var questions = [["Wie viel gibst du f�r K�se?",
 			["Schilthorn", 2],
 			["Defourspitze", 0],
 			["Jungfrau", 4]]],
-		["Was ist deine Lieblingssprache in der Schwiez",
-			[["Franz�sisch",0],
+		["Bist du religiös?",
+			[["Sehr religiös",1],
+			["Ein bisschen", 5],
+			["Manchmal", 4],
+			["Super nein", 3],
+			["Nur für Ferien", 2],
+			["Nein", 0]]],
+		["Was machst du gern?",
+			[["Sport",3],
+			["Videospielen", 2],
+			["Hausaufgaben", 1],
+			["Ziechnen", 4],
+			["Tanzen", 5],
+			["Ich habe nichts gern", 0]]],
+		["Was ist deine Lieblingssprache in der Schwiez?",
+			[["Französisch",0],
 			["Deutsch", 4],
 			["Italienisch", 1],
 			["Engisch", 2],
-			["Geb�rdensprache", 5],
-			["Rum�nisch", 3]]]
+			["Gebärdensprache", 5],
+			["Rumänisch", 3]]],
+		["Was ist dein leiblingsschwiezerkäse?",
+			[["Appenzeller",0],
+			["Emmentaler", 1],
+			["Gruyère", 2],
+			["Raclette", 3],
+			["Sbrinz", 4],
+			["Tête de Moine", 5]]]
 		];
 
 function generateQuiz(){
@@ -48,7 +69,7 @@ function generateQuiz(){
 		var div = document.createElement(name);
 
 		var contents = "<br>";
-		contents += "<h3>" + questions[i][0] + "</h3>";
+		contents += "<h3>" + ((i+1) + ") ") + questions[i][0] + "</h3>";
 		for(var a = 0; a < questions[i][1].length; a++){
 			console.log("<input type=\"radio\" id=\"" + (name + a) + "\" name=\"" + (name) + "\" value=\"" + questions[i][1][a][0] + "\">&nbsp;" + questions[i][1][a][0] + "<br>");
 			contents += "<input type=\"radio\" id=\"" + (name + a) + "\" name=\"" + (name) + "\" value=\"" + questions[i][1][a][0] + "\">&nbsp;" + questions[i][1][a][0] + "<br>";
@@ -69,7 +90,7 @@ function scoreQuiz(){
 	document.getElementById("results").style.visibility = "visible";
 
 	console.log("questions length = " + questions.length);
-	var scores = [0,0,0,0,0,0];
+	var scores = [["Appenzeller",0],["Emmentaler",0],["Gruyère",0],["Raclette",0],["Sbrinz",0],["Tête de Moine",0]];
 	for(var i = 0; i < questions.length; i++){
 		console.log("looking at q" + i);
 		var radiosID = "q" + i;
@@ -77,11 +98,14 @@ function scoreQuiz(){
 			console.log(document.getElementById(radiosID + r))
 			if(document.getElementById(radiosID + r).checked){
 				console.log("incrementing index " + questions[i][1][r][1]);
-				scores[questions[i][1][r][1]]++;
+				scores[questions[i][1][r][1]][1]++;
 			}
 		}
 	}
 	console.log(scores);
-
-	//set span to max from scores
+	var maxIndex = 0;
+	for(var i = 1; i < scores.length; i++){
+		if(scores[i][1] > scores[maxIndex][1]) maxIndex = i;
+	}
+	document.getElementById("ans").innerHTML = scores[maxIndex][0];
 }
